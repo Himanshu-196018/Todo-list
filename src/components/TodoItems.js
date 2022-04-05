@@ -8,7 +8,9 @@ class TodoItems extends React.Component {
       <div>
         <ul className="container">
           {todos.map(todo =>(
-              <Todo todo = {todo} key={todo.id} todos={todos} />
+              <Todo todo = {todo} key={todo.id} todos={todos} 
+              completionHandler = {this.props.completionHandler}
+              deleteHandler = {this.props.deleteHandler} />
           ))}
         </ul>
       </div>
