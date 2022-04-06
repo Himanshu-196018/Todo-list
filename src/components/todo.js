@@ -7,10 +7,10 @@ class Todo extends React.Component {
     return (
       <li className={`card ${completed === true ? " complete" : " "}`}>
         <div className="date">{date.toLocaleDateString()}</div>
-        <button className="done btn" onClick={this.props.completionHandler}>
+        <button className="done btn" onClick={() => this.props.completionHandler(this.props.todo.id)}>
           <i className="fa fa-check fa-xl"></i>
         </button>
-        <button className="delete btn" onClick={this.props.deleteHandler}>
+        <button className="delete btn" onClick={() => this.props.deleteHandler(this.props.todo.id)}>
           <i className="fa fa-xmark fa-xl"></i>
         </button>
         <hr />

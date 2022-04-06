@@ -13,7 +13,7 @@ class Form extends React.Component {
     this.valueHandler = this.valueHandler.bind(this);
     this.addListHandler = this.addListHandler.bind(this);
     this.deleteHandler = this.deleteHandler.bind(this);
-    this.completionHandler = this.completionHandler(this);
+    this.completionHandler = this.completionHandler.bind(this);
   }
 
   valueHandler(e) {
@@ -40,14 +40,23 @@ class Form extends React.Component {
     this.setState({ filter: this.target.value });
   }
 
-  deleteHandler() {
-    this.props.todos = this.props.todos.filter(
-      (el) => el.id !== this.props.todo.id
+  deleteHandler(id) {
+    const newTodos = this.state.todos.filter(
+      (el) => el.id !== id
     );
+    this.setState({todos: newTodos});
   }
 
-  completionHandler() {
-    console.log("hello");
+  completionHandler(id) {
+    const newTodos = this.state.todos.map(
+      (el) => {
+        if(el.id === id){
+          el.completed = !el.completed;
+        }
+        return el;
+      }
+    );
+    this.setState({todos: newTodos});
   }
 
   render() {
